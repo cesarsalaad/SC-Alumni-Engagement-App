@@ -8,7 +8,8 @@
 		<h3>{{ event.title }}</h3>
 		<p>{{ event.description }}</p>
 		<form action="/rsvp/" method="get">
-			<input type="text" value="Name" name="attendee">
+			<input type="text" value="First Name" name="firstname">
+			<input type="text" value="Last Name" name="lastname">
 			<input type="submit" value="RSVP">
 	{% endfor %}
 </body>
