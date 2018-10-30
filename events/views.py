@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse 
 from events.models import Event
-from events.model import Person
+from events.models import Person
 # Create your views here.
 def display_events(request):
 	events = Event.objects.all()
@@ -10,4 +10,13 @@ def display_events(request):
 def search_form(request): 
 	return render(request, 'events/search_form.html')
 def rsvp(request):
-	attendees = Event.attendees.all()
+	if request.method == 'POST':
+    		if request.POST.get('firstname') and request.POST.get('lastname'):
+        		person=Person()
+        		person.first_name= request.POST.get('firstname')
+        		person.last_name= request.POST.get('lastname')
+        		person.save()
+			event=Event()
+			event.Person = person
+			return render(request, 'events/rsvp.html')  
+

@@ -7,7 +7,7 @@
 	{% for event in events %}
 		<h3>{{ event.title }}</h3>
 		<p>{{ event.description }}</p>
-		<form action="/rsvp/" method="get">
+		<form action="" method="POST">
 			<input type="text" value="First Name" name="firstname">
 			<input type="text" value="Last Name" name="lastname">
 			<input type="submit" value="RSVP">
