@@ -7,10 +7,12 @@
 	{% for event in events %}
 		<h3>{{ event.title }}</h3>
 		<p>{{ event.description }}</p>
-		<form action="" method="POST">
-			<input type="text" value="First Name" name="firstname">
-			<input type="text" value="Last Name" name="lastname">
+		<form action="/rsvp/" method="POST">
+		{% csrf_token %}
+			<input type="text" value="First Name" name="first_name">
+			<input type="text" value="Last Name" name="last_name">
 			<input type="submit" value="RSVP">
+		</form>
 	{% endfor %}
 </body>
 </html>
