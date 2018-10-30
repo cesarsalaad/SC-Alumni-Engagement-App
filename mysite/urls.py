@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
 from django.conf.urls import include, url
-from myapp.admin import admin_site
+
 urlpatterns = [
 	url(r'^',include('events.urls')),
     path('admin/', admin.site.urls),

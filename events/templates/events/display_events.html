@@ -1,0 +1,15 @@
+<html>
+<head>
+	<title>Alumni Events</title>
+</head>
+<body> 
+	<h2>Events Page<h2>
+	{% for event in events %}
+		<h3>{{ event.title }}</h3>
+		<p>{{ event.description }}</p>
+		<form action="/rsvp/" method="get">
+			<input type="text" value="Name" name="attendee">
+			<input type="submit" value="RSVP">
+	{% endfor %}
+</body>
+</html>
