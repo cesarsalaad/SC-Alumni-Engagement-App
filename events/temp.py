@@ -9,19 +9,14 @@ def display_events(request):
 	return render(request, 'events/display_events.html',args)
 def search_form(request): 
 	return render(request, 'events/search_form.html')
-
 def rsvp(request):
 	if request.method == 'POST':
-		if request.POST.get('first_name') and request.POST.get('last_name'):
+		if request.POST.get('firstname') and request.POST.get('lastname'):
 			person=Person()
-			person.first_name= request.POST.get('first_name')
-			person.last_name= request.POST.get('last_name')	
-			event = Event()	
-			event.attendees.add(person)
+			person.first_name= request.POST.get('firstname')
+			person.last_name= request.POST.get('lastname')
 			person.save()
-			
-			
+			event=Event()
+			event.Person = person
 			return render(request, 'events/rsvp.html')  
-		else:
-			return render(request, 'events/rsvp.html')
 
