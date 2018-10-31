@@ -1,5 +1,10 @@
 <html>
 <body>
 You RSVP'd
+<br></br>
+<br>People Attending:</br>
+{% for peeps in people %}
+<p>{{peeps.first_name}}</p>
+{% endfor %}
 </body>
 </html>

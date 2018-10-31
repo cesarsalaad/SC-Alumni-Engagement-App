@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'^search-form/$', views.search_form),
 	url(r'^alumni/$',views.display_events),
 	url(r'^rsvp/$',views.rsvp),
+	url(r'^add_event/$',views.add_event),
 ]
