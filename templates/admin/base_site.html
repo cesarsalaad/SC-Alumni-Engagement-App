@@ -1,0 +1,30 @@
+{% extends "admin/base.html" %}
+
+{% load static %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block extrastyle %}
+<style>
+#header{ background-color: #800303; border-bottom: solid 3px #FFFFFF; height:auto;}
+
+#branding h1{ color: #800303; }
+
+div.breadcrumbs{background-color: #7F2929;}
+
+div.submit-row input{background-color: #7F2929;}
+
+.module h2, .module caption, .inline-group h2 {background:#7F2929; color: #000000; }
+a.section:link, a.section:visited { color: #ffc; }
+</style>
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+        <img src="{% static 'Logo.png' %}" height="100px" />
+    </a>
+</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
