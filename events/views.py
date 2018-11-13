@@ -4,7 +4,7 @@ from events.models import Event
 from events.models import Person
 # Create your views here.Last Name
 def display_events(request):
-	events = Event.objects.all()
+	events = Event.objects.filter(status='a')
 	args = {'events':events}
 	return render(request, 'events/display_events.html',args)
 def search_form(request): 
@@ -12,10 +12,10 @@ def search_form(request):
 
 def rsvp(request):
 	# people = Event.objects.all()[0]
-	events = Event.objects.all()
+	
 	# people = list(people.attendees.all())
               
-	events = list(Event.objects.all())
+	events = list(Event.objects.filter(status='a'))
 
 	if request.method == 'POST':
 		for event in events:
@@ -45,7 +45,13 @@ def rsvp(request):
 
 def add_event(request):
 	if request.method == 'POST':
-		person=Person.objects.create(first_name=request.POST.get('first_name'), last_name=request.POST.get('last_name'))
-		events=Event.objects.create(title=request.POST.get('title'), location=request.POST.get('location'), date=request.POST.get('date'), description=request.POST.get('description'), time=request.POST.get('time'))
+		person=Person.objects.create(first_name=request.POST.get('first_name'), last_name=request.POST.get('last_name'), class_year=request.POST.get('class_year'))
+		events=Event.objects.create(title=request.POST.get('title'), location=request.POST.get('location'), date=request.POST.get('date'), description=request.POST.get('description'), time=request.POST.get('time'), status='p')
 
 		return HttpResponseRedirect('/alumni')
+
+
+
+
+
+

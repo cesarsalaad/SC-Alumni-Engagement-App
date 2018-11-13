@@ -1,10 +1,11 @@
-<html>
-<body>
-You RSVP'd
+{% extends 'base.html' %}
+
+{% block title %}You RSVP'd!{% endblock %}
+
+{% block content %}
 <br></br>
 <br>People Attending:</br>
 {% for peeps in people %}
 <p>{{peeps.first_name}}</p>
 {% endfor %}
-</body>
-</html>
+{% endblock %}

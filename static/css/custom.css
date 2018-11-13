@@ -1,8 +1,18 @@
+/* Home Page Styling */
+#home {
+  background-color: #800303;
+  color: #FFFFFF;
+  margin: auto;
+  text-align: center
+}
+
+/* Base Template Styling */
 #branding {
   min-height: 100px;
   background-color: #800303;
+  color: #FFFFFF;
 }
 
 #brand_logo {
-  max-height: 100px;
+  max-width: 300px;
 }

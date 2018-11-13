@@ -1,18 +1,38 @@
 <!-- templates/home.html -->
-{% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Home{% endblock %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}" type="text/css" />
+    <meta charset="utf-8">
+    <title>{% block title %}Home{% endblock %}</title>
+  </head>
 
-{% block content %}
-{% if user.is_authenticated %}
-  Hi {{ user.username }}!
-  {% if request.user.is_superuser %}
-    <a href="/admin"><button>Admin Dashboard</button></a>
-  {% endif %}
-  <p><a href="{% url 'logout' %}">logout</a></p>
-  <a href="/alumni"><button>View/Post Events</button></a>
-{% else %}
-  <p>You are not logged in</p>
-  <a href="{% url 'login' %}">login</a>
-{% endif %}
-{% endblock %}
+  <body id="home">
+    {% block content %}
+    <div class="container py-4">
+      <div>
+        <img id="home_brand_logo"src="{% static 'Logo.png' %}" class="img-fluid" alt="Santa Clara Alumni Logo">
+        <h1>Engagement Recording System</h1>
+      </div>
+      <div class="py-4">
+        <a href="/alumni"><button type="button" class="btn btn-outline-light btn-block btn-lg py-3">Events Dashboard</button></a>
+      </div>
+      <div class="py-4">
+        {% if user.is_authenticated %}
+          Hi {{ user.username }}!
+          {% if request.user.is_superuser %}
+            <a href="/admin"><button>Admin Dashboard</button></a>
+          {% endif %}
+          <p><a href="{% url 'logout' %}">logout</a></p>
+          {% else %}
+          <a href="/admin"><button type="button" class="btn btn-outline-light">Alumni Office Login</button></a>
+          {% endif %}
+          {% endblock %}
+      </div>
+    </div>
+
+  </body>
+</html>
