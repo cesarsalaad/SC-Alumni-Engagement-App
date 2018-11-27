@@ -17,6 +17,7 @@
       <th scope="col">First Name</th>
       <th scope="col">Last Name</th>
       <th scope="col">Grad Year</th>
+      <th scope="col">Check-In Status</th>
     </tr>
   </thead>
   <tbody>
@@ -24,6 +25,7 @@
     <tr>
       <td>{{peeps.first_name}}</td>
       <td>{{peeps.last_name}}</td>
+      <td>{{peeps.graduation}}</td>
       <form action="/verify/" method="POST">
         {% csrf_token %}
         {% if peeps.checkedIn != 0 %}
