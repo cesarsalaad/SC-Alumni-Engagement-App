@@ -1,6 +1,7 @@
 from django.contrib import admin
 from events.models import Event#, Person
 from django.contrib.admin.views.main import ChangeList
+from django.contrib.admin import DateFieldListFilter
 
 # Change heading on user control
 from django.contrib.auth.apps import AuthConfig
