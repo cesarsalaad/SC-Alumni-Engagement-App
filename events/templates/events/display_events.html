@@ -11,9 +11,6 @@
 </button>
 
 <!-- Modal -->
-
-<!-- This script provides calendar pop-up for browsers without native support -->
-
 <div class="modal fade" id="eventForm" tabindex="-1" role="dialog" aria-labelledby="eventFormLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -24,38 +21,38 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<script type="text/javascript">
-								$(document).ready(function(){
-									$('#appt-time').timepicker({
-											timeFormat: 'h:mm p',
-											interval: 60,
-											minTime: '0',
-											maxTime: '11:00pm',
-											defaultTime: '12',
-											startTime: '12:00',
-											dynamic: true,
-											dropdown: true,
-											scrollbar: true
-									});
-								});
-				</script>
 				<form action="/add_event/" method="POST">
 				{% csrf_token %}
-					<input type="text" placeholder="First Name" name="first_name">
-					<input type="text" placeholder="Last Name" name="last_name">
-					<input type="text" placeholder="Class Year" name="class_year">
-					<input type="text" placeholder="Title" name="title">
-					<input type="text" placeholder="Location" name="location">
-					<input type="date" id="start" name="date">
-					<input type="text" placeholder="Description" name="description">
-					<input type="time" id="appt-time" name="time">
-					<input type="submit" value="RSVP">
+					<input type="text" placeholder="First Name" name="first_name" required="required">
+					<input type="text" placeholder="Last Name" name="last_name" required="required">
+					<input type="text" placeholder="Class Year" name="class_year" required="required">
+					<input type="text" placeholder="Title" name="title" required="required">
+					<input type="text" placeholder="Location" name="location" required="required">
+					<input type="date" id="start" placeholder="yyyy/mm/dd" name="date" required="required">
+					<input type="text" placeholder="Description" name="description" required="required">
+					<script type="text/javascript">
+									$(document).ready(function(){
+										$('#appt-time').timepicker({
+												timeFormat: 'h:mm p',
+												interval: 60,
+												minTime: '0',
+												maxTime: '11:00pm',
+												defaultTime: '12',
+												startTime: '12:00',
+												dynamic: true,
+												dropdown: true,
+												scrollbar: true
+										});
+									});
+					</script>
+					<input type="time" id="appt-time" placeholder="hh:mm am/pm" name="time" required="required">
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="button submit" class="btn btn-primary">Submit for Approval</button>
+					</div>
 				</form>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Submit for Approval</button>
-			</div>
+
 		</div>
 	</div>
 </div>
@@ -73,9 +70,9 @@
 					<h6 class="card-text">{{ event.description }}</h6>
 					<form action="/rsvp/" method="POST">
 						{% csrf_token %}
-						<input type="text" placeholder="First Name" name="first_name">
-						<input type="text" placeholder="Last Name" name="last_name">
-						<input type="text" value="Class Year" name="class_year">
+						<input type="text" placeholder="First Name" name="first_name" required="required">
+						<input type="text" placeholder="Last Name" name="last_name" required="required">
+						<input type="text" placeholder="Class Year" name="class_year" required="required">
 						<input type="hidden" value="{{ event.id }}" name="id">
 						<input type="submit" value="RSVP" class="btn btn-primary">
 					</form>

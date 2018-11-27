@@ -16,3 +16,7 @@
 #brand_logo {
   max-width: 300px;
 }
+
+.ui-timepicker-container {
+  z-index: 9999!important;
+}
