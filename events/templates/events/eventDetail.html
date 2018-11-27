@@ -1,16 +1,33 @@
+<!-- eventDetail.html -->
+
+<!-- This page displays a focused view of a
+single event, also providing the ability to
+check in if the user has already RSVP'd -->
+
+<!-- extend base template to minimize repetition -->
 {% extends 'base.html' %}
 
 {% block title %}Event Detail{% endblock %}
 
+<!-- Begin Page Content -->
 {% block content %}
 
-<h1>{{event.title}}</h1>
-<h2>{{event.date}}</h2>
-<h3>{{event.location}}</h3>
-<p>{{event.description}}</p>
+<!-- Basic Event Information -->
+<div class="card">
+  <h3 class="card-header">{{ event.title }}</h3>
+  <div class="card-body">
+    <h2><i class="far fa-calendar-alt"></i>  {{event.date}}</h2>
+    <h3 class="text-muted"><i class="far fa-clock"></i>  {{ event.time }}</h3>
+    <h3 class="text-muted"><i class="fas fa-map-marker-alt"></i>  {{ event.location}}</h3>
+    <h6 class="text-muted">Description:</h6>
+    <h4>{{ event.description }}</h4>
+  </div>
+</div>
 
+<br></br>
+
+<!-- Dynamic Attendance List with the option to check-in -->
 <h4>People Attending:</h4>
-
 <table class="table">
   <thead>
     <tr>

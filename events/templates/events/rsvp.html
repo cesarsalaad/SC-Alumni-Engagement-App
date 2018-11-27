@@ -1,11 +1,28 @@
+<!-- rsvp.html -->
+
+<!-- This page is the success message
+ once someone has RSVP'd to an event.
+The user is reminded to check in later
+ and gets to see a list of other attendees -->
+
+<!-- extend base template to minimize repetition -->
 {% extends 'base.html' %}
 
 {% block title %}You RSVP'd!{% endblock %}
 
 {% block content %}
 <br></br>
-<br>People Attending:</br>
+<h1>Thanks for your RSVP!</h1>
+<h3>Make sure to check-in on the day of the event!</h3>
+<br>
+<h5>Who Else is Going:</h5>
 {% for peeps in people %}
 <p>{{peeps.first_name}}</p>
 {% endfor %}
+<button class="btn btn-primary" onclick="goBack()">Back to Events</button>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
 {% endblock %}

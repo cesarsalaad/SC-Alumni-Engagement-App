@@ -24,3 +24,20 @@
 .deletelink {
   height: 35px!important;
 }
+
+
+
+/* Formatting for printing event report */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #result_list, #result_list * {
+    visibility: visible;
+  }
+  #result_list {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}

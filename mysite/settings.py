@@ -70,6 +70,8 @@ TEMPLATES = [
     },
 ]
 
+# Static Files Location
+# Fine for development, but must be commented or deleted for deployment
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]

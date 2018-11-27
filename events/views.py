@@ -1,31 +1,20 @@
+#	views.py
+#
+#	Views are Django's way of managing
+# 	functions that take in requests
+# 	and return responses
+#
+
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from events.models import Event
 from events.models import Person
+
 # Create your views here
 def display_events(request):
 	events = Event.objects.filter(status='a')
 	args = {'events':events}
 	return render(request, 'events/display_events.html',args)
-
-def search_form(request):
-	return render(request, 'events/search_form.html')
-
-# def eventDetail(request):
-# 	events = list(Event.objects.filter(status='a'))
-#
-# 	if request.method == 'POST':
-# 		for event in events:
-# 			if str(event.id) == request.POST.get('id'):
-# 				index = -1
-# 				for i in events:
-# 					index+=1
-# 					if i.id == event.id:
-# 						people = events[index].attendees.all()
-# 						break;
-#
-# 				args = {'people':people, 'event':event}
-# 				return render(request, 'events/eventDetail.html',args)
 
 def rsvp(request):
 	# people = Event.objects.all()[0]

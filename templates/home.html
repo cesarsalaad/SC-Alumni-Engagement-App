@@ -1,10 +1,17 @@
 <!-- templates/home.html -->
+
+<!-- The main homepage with the option to enter
+the dashboard (anyone can access) or login for
+admin access to their own interface -->
+
 {% load static %}
 
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Custom Bootstrap comppiled with our own color scheme -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css" />
+    <!-- Custom CSS to override default django styling -->
     <link rel="stylesheet" href="{% static 'css/custom.css' %}" type="text/css" />
     <meta charset="utf-8">
     <title>{% block title %}Home{% endblock %}</title>
@@ -21,6 +28,7 @@
         <a href="/alumni"><button type="button" class="btn btn-outline-light btn-block btn-lg py-3">Events Dashboard</button></a>
       </div>
       <div class="py-4">
+        <!-- Only display link to admin dashboard if logged in as admin member -->
         {% if user.is_authenticated %}
           <h4>Hi {{ user.username }}!</h4>
           {% if request.user.is_superuser %}

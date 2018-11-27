@@ -7,13 +7,14 @@
   <head>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css" />
-    <!-- Our own magic sauce -->
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/custom.css' %}" type="text/css" />
-
+    <!-- Import icons from fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <meta charset="utf-8">
     <title>{% block title %}SCU Alumni Events{% endblock %}</title>
 
-
+    <!-- Import timepicker for browsers without native support -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
     <script type="text/javascript">
     var datefield=document.createElement("input")

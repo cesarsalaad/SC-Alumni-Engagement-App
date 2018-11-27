@@ -1,14 +1,20 @@
+<!-- display_events.html -->
+
+<!-- This page is the main dashboard,
+ displaying all upcoming and approved
+  events with the option for an alumnus
+	 to submit an event for approval -->
+
+
+<!-- extend base template to minimize repetition -->
 {% extends 'base.html' %}
 
 {% block title %}Alumni Events{% endblock %}
 
+<!-- Begin Page Content -->
 {% block content %}
-
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#eventForm">
-	Submit an Event
-</button>
+<!-- Button to trigger modal popup with event form -->
+<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#eventForm">Submit an Event</button>
 
 <!-- Modal -->
 <div class="modal fade" id="eventForm" tabindex="-1" role="dialog" aria-labelledby="eventFormLabel" aria-hidden="true">
@@ -73,17 +79,20 @@
 	</div>
 </div>
 
+<!-- Main Page Content -->
 	<div class="py-5">
 		<h2>Upcoming Events:<h2>
+
 		{% for event in events %}
 		<div class="py-2">
 			<div class="card">
 				<h3 class="card-header">{{ event.title }}</h3>
 				<div class="card-body">
-					<h4 class="card-title">{{ event.date }}</h4>
-					<h6>{{ event.time }}</h6>
-					<h6 class="card-text">{{ event.location }}</h6>
-					<h6 class="card-text">{{ event.description }}</h6>
+					<h4 class="card-title"><i class="far fa-calendar-alt"></i>  {{ event.date }}</h4>
+					<h6 class="card-text text-muted"><i class="far fa-clock"></i>  {{ event.time }}</h6>
+					<h6 class="card-text text-muted"><i class="fas fa-map-marker-alt"></i>    {{ event.location }}</h6>
+					<h6 class="form-text text-muted">Description:</h6>
+					<h4 class="card-text">{{ event.description }}</h4>
 					<form action="/rsvp/" method="POST">
 						{% csrf_token %}
 						<input type="text" placeholder="First Name" name="first_name" required="required">
@@ -102,6 +111,7 @@
 			</div>
 		</div>
 		{% endfor %}
+
 	</div>
 
 
