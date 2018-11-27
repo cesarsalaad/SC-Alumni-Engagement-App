@@ -22,9 +22,9 @@
       </div>
       <div class="py-4">
         {% if user.is_authenticated %}
-          Hi {{ user.username }}!
+          <h4>Hi {{ user.username }}!</h4>
           {% if request.user.is_superuser %}
-            <a href="/admin"><button>Admin Dashboard</button></a>
+          <a href="/admin"><button type="button" class="btn btn-outline-light">Admin Dashboard</button></a>
           {% endif %}
           <p><a href="{% url 'logout' %}">logout</a></p>
           {% else %}

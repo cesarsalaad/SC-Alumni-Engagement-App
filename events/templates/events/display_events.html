@@ -11,6 +11,9 @@
 </button>
 
 <!-- Modal -->
+
+<!-- This script provides calendar pop-up for browsers without native support -->
+
 <div class="modal fade" id="eventForm" tabindex="-1" role="dialog" aria-labelledby="eventFormLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -21,11 +24,26 @@
 				</button>
 			</div>
 			<div class="modal-body">
+				<script type="text/javascript">
+								$(document).ready(function(){
+									$('#appt-time').timepicker({
+											timeFormat: 'h:mm p',
+											interval: 60,
+											minTime: '0',
+											maxTime: '11:00pm',
+											defaultTime: '12',
+											startTime: '12:00',
+											dynamic: true,
+											dropdown: true,
+											scrollbar: true
+									});
+								});
+				</script>
 				<form action="/add_event/" method="POST">
 				{% csrf_token %}
 					<input type="text" placeholder="First Name" name="first_name">
 					<input type="text" placeholder="Last Name" name="last_name">
-					<input type="text" value="Class Year" name="class_year">
+					<input type="text" placeholder="Class Year" name="class_year">
 					<input type="text" placeholder="Title" name="title">
 					<input type="text" placeholder="Location" name="location">
 					<input type="date" id="start" name="date">

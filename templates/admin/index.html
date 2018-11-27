@@ -1,0 +1,65 @@
+<!-- Replacement html file for django/contrib/admin/templates/admin/index.html -->
+<!-- By replacing instead of extending, we can create our own bootstrap layout -->
+
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+<!-- Use our own Bootstrap styling instead of Django Default -->
+<!-- {% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}">{% endblock %} -->
+
+<!-- {% block bodyclass %}{{ block.super }} dashboard{% endblock %} -->
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+<div id="container">
+  <div class="row">
+
+{% if app_list %}
+    {% for app in app_list %}
+
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">
+                <!-- Title of App -->
+                <a href="{{ app.app_url }}" title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}">{{ app.name }}</a>
+              </h5>
+              <p class="card-text">
+                <ul class="list-group list-group-flush">
+                  {% for model in app.models %}
+                      {% if model.admin_url %}
+                          <li class="list-group-item"><a href="{{ model.admin_url }}">{{ model.name }}</a></li>
+                      {% else %}
+                          <li class="list-group-item">{{ model.name }}</li>
+                      {% endif %}
+
+                      {% if model.add_url %}
+                          <a href="{{ model.add_url }}" class="btn btn-primary addlink">{% trans 'Add' %}</a>
+                      {% else %}
+                          &nbsp;
+                      {% endif %}
+
+                      {% if model.admin_url %}
+                          {% if model.view_only %}
+                            <a href="{{ model.admin_url }}" class="btn btn-primary viewlink">{% trans 'View' %}</a>
+                          {% else %}
+                            <a href="{{ model.admin_url }}" class="btn btn-primary changelink">{% trans 'Change' %}</a>
+                          {% endif %}
+                      {% else %}
+                          <li class="list-group-item">&nbsp;</li>
+                      {% endif %}
+                  {% endfor %}
+                </ul>
+              </p>
+            </div>
+          </div>
+        </div>
+
+    {% endfor %}
+{% else %}
+    <p>{% trans "You don't have permission to view or edit anything." %}</p>
+{% endif %}
+  </div>
+</div>
+{% endblock %}
