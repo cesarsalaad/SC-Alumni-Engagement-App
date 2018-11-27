@@ -20,3 +20,7 @@
 .ui-timepicker-container {
   z-index: 9999!important;
 }
+
+.deletelink {
+  height: 35px!important;
+}
