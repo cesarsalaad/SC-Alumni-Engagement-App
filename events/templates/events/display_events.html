@@ -12,40 +12,56 @@
 
 <!-- Modal -->
 <div class="modal fade" id="eventForm" tabindex="-1" role="dialog" aria-labelledby="eventFormLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="eventFormLabel">Propose an Event</h5>
+				<h1 class="modal-title" id="eventFormLabel">Organize an Event</h1>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
+				<h4 class="text-center">
+					Please fill in the following form and the Alumni Office
+					will contact you soon with the approval status of your event.
+				</h4>
+				<br></br>
 				<form action="/add_event/" method="POST">
 				{% csrf_token %}
-					<input type="text" placeholder="First Name" name="first_name" required="required">
-					<input type="text" placeholder="Last Name" name="last_name" required="required">
-					<input type="text" placeholder="Class Year" name="class_year" required="required">
-					<input type="text" placeholder="Title" name="title" required="required">
-					<input type="text" placeholder="Location" name="location" required="required">
-					<input type="date" id="start" placeholder="yyyy/mm/dd" name="date" required="required">
-					<input type="text" placeholder="Description" name="description" required="required">
-					<script type="text/javascript">
-									$(document).ready(function(){
-										$('#appt-time').timepicker({
-												timeFormat: 'h:mm p',
-												interval: 60,
-												minTime: '0',
-												maxTime: '11:00pm',
-												defaultTime: '12',
-												startTime: '12:00',
-												dynamic: true,
-												dropdown: true,
-												scrollbar: true
+					<div class="form-group">
+						<label for="HostName">Host Information:</label>
+						<input class="my-2 form-control" type="text" placeholder="First Name" name="first_name" required="required" id="HostName">
+						<input class="my-2 form-control" type="text" placeholder="Last Name" name="last_name" required="required">
+						<input class="my-2 form-control" type="text" placeholder="Class Year" name="class_year" required="required">
+						<input class="my-2 form-control" type="text" placeholder="Major" name="major" required="required">
+
+					</div>
+					<div class="form-group">
+						<label for="EventName">Event Information:</label>
+						<input class="my-2 form-control" type="text" placeholder="Event Title" name="title" required="required" id="EventName">
+						<input class="my-2 form-control" type="text" placeholder="Location" name="location" required="required">
+						<input class="my-2 form-control" type="date" id="start" placeholder="yyyy/mm/dd" name="date" required="required">
+						<script type="text/javascript">
+										$(document).ready(function(){
+											$('#appt-time').timepicker({
+													timeFormat: 'h:mm p',
+													interval: 60,
+													minTime: '0',
+													maxTime: '11:00pm',
+													defaultTime: '12',
+													startTime: '12:00',
+													dynamic: true,
+													dropdown: true,
+													scrollbar: true
+											});
 										});
-									});
-					</script>
-					<input type="time" id="appt-time" placeholder="hh:mm am/pm" name="time" required="required">
+						</script>
+						<input class="my-2 form-control" type="time" id="appt-time" placeholder="hh:mm am/pm" name="time" required="required">
+						<textarea class="my-2 form-control" type="text" placeholder="Description" name="description" required="required"></textarea>
+						<small id="passwordHelpBlock" class="form-text text-muted">
+  						Good descriptions give people a better idea of what to expect.
+						</small>
+					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 						<button type="button submit" class="btn btn-primary">Submit for Approval</button>
@@ -73,8 +89,14 @@
 						<input type="text" placeholder="First Name" name="first_name" required="required">
 						<input type="text" placeholder="Last Name" name="last_name" required="required">
 						<input type="text" placeholder="Class Year" name="class_year" required="required">
+						<input type="text" placeholder="Major" name="major" required="required">
 						<input type="hidden" value="{{ event.id }}" name="id">
 						<input type="submit" value="RSVP" class="btn btn-primary">
+					</form>
+					<form action="/eventDetail/" method="POST">
+						{% csrf_token %}
+						<input type="hidden" value="{{ event.id }}" name="id">
+						<input type="submit" value="Event Details" class="btn btn-primary">
 					</form>
 				</div>
 			</div>

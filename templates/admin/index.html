@@ -19,35 +19,32 @@
     {% for app in app_list %}
 
         <div class="col-sm-6">
-          <div class="card">
+          <div class="card text-center">
             <div class="card-body">
               <h5 class="card-title">
                 <!-- Title of App -->
-                <a href="{{ app.app_url }}" title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}">{{ app.name }}</a>
+                <a title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}">{{ app.name }}</a>
               </h5>
               <p class="card-text">
                 <ul class="list-group list-group-flush">
                   {% for model in app.models %}
-                      {% if model.admin_url %}
-                          <li class="list-group-item"><a href="{{ model.admin_url }}">{{ model.name }}</a></li>
-                      {% else %}
-                          <li class="list-group-item">{{ model.name }}</li>
-                      {% endif %}
 
+                      <div class="row mx-auto">
                       {% if model.add_url %}
-                          <a href="{{ model.add_url }}" class="btn btn-primary addlink">{% trans 'Add' %}</a>
+                          <a href="{{ model.add_url }}" class="mx-1 my-1 btn btn-primary addlink">{% trans 'Add' %}</a>
                       {% else %}
                           &nbsp;
                       {% endif %}
 
                       {% if model.admin_url %}
                           {% if model.view_only %}
-                            <a href="{{ model.admin_url }}" class="btn btn-primary viewlink">{% trans 'View' %}</a>
+                            <a href="{{ model.admin_url }}" class="mx-1 my-1 btn btn-primary viewlink">{% trans 'View' %}</a>
                           {% else %}
-                            <a href="{{ model.admin_url }}" class="btn btn-primary changelink">{% trans 'Change' %}</a>
+                            <a href="{{ model.admin_url }}" class="mx-1 my-1 btn btn-primary changelink">{% trans 'View/Edit' %}</a>
                           {% endif %}
                       {% else %}
                           <li class="list-group-item">&nbsp;</li>
+                      </div>
                       {% endif %}
                   {% endfor %}
                 </ul>
