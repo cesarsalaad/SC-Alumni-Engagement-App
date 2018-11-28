@@ -9,6 +9,7 @@
 from django.contrib import admin
 from events.models import Event#, Person
 from django.contrib.admin.views.main import ChangeList
+from django.contrib.admin import DateFieldListFilter
 
 # Change heading on user control
 from django.contrib.auth.apps import AuthConfig
@@ -24,7 +25,7 @@ class EventAdmin(admin.ModelAdmin):
 	actions = ['approve']
 	# search_fields=('title','location')
 	fields = ['title', 'location', 'date', 'time', 'description', 'host_first_name', 'host_last_name', 'host_graduation','host_major','numberAttendees']
-	list_filter=('status',)
+	list_filter=('status',('date', DateFieldListFilter))
 
 	# enables ability to display attendees in admin interface
 	def Attendees(self, obj):

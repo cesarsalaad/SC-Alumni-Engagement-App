@@ -66,8 +66,6 @@ def eventDetail(request):
 	if request.method == 'POST':
 		for event in events:
 			if str(event.id) == request.POST.get('id'):
-
-				event.numberAttendees = event.numberAttendees+1
 				index = -1
 				for i in events:
 					index+=1
